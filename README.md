@@ -1,4 +1,5 @@
-raptor-b
-========
+raptor
+======
 
-Raptor B library component
+Raptor library.
+
