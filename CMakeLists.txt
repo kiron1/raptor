@@ -24,6 +24,7 @@ find_package(BoostProgramOptions REQUIRED CONFIG)
 find_package(BoostSystem REQUIRED CONFIG)
 find_package(BoostUnitTestFramework)
 find_package(ScanBuild QUIET)
+find_package(BoostBook QUIET)
 
 project(Raptor VERSION 0.3.1 LANGUAGES CXX)
 
@@ -40,6 +41,7 @@ endif()
 
 add_subdirectory(libs)
 add_subdirectory(tools)
+add_subdirectory(doc)
 
 if(COMMAND add_scan_build)
     add_scan_build(scan-build)
