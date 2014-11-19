@@ -18,6 +18,8 @@ endif()
 
 set_property(GLOBAL PROPERTY USE_FOLDERS On)
 
+project(Raptor VERSION 0.3.1 LANGUAGES CXX)
+
 find_package(AdobeSourceLibraries REQUIRED CONFIG)
 find_package(BoostFilesystem REQUIRED CONFIG)
 find_package(BoostProgramOptions REQUIRED CONFIG)
@@ -26,7 +28,6 @@ find_package(BoostUnitTestFramework)
 find_package(ScanBuild QUIET)
 find_package(BoostBook QUIET)
 
-project(Raptor VERSION 0.3.1 LANGUAGES CXX)
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
