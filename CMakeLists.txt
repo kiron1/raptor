@@ -27,7 +27,12 @@ find_package(BoostSystem REQUIRED CONFIG)
 find_package(BoostUnitTestFramework)
 find_package(ScanBuild QUIET)
 find_package(BoostBook QUIET)
+find_package(Git QUIET)
 
+if(GIT_EXECUTABLE AND NOT TARGET Git::git)
+    add_executable(Git::git IMPORTED)
+    set_target_properties(Git::git PROPERTIES IMPORTED_LOCATION "${GIT_EXECUTABLE}")
+endif()
 
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
