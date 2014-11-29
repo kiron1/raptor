@@ -47,7 +47,7 @@
 
 find_program(ScanBuild_EXECUTABLE
         DOC "Path to clang's scan-build executable."
-        NAMES scan-build scan-build-3.7 scan-build-3.6 scan-build-3.5 scan-build 3.4
+        NAMES scan-build scan-build-3.7 scan-build-3.6 scan-build-3.5 scan-build-3.4
 )
 
 if(ScanBuild_EXECUTABLE)
@@ -119,3 +119,4 @@ if(TARGET ScanBuild::scan-build AND NOT COMMAND add_scan_build)
         )
     endfunction()
 endif()
+
