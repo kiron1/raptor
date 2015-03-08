@@ -28,6 +28,7 @@ target_compile_options(raptor_utility
 target_link_libraries(raptor_utility
     PUBLIC
         $<$<CXX_COMPILER_ID:Clang>:c++>
+        boost::boost
         adobe::source_libraries
 )
 set_target_properties(raptor_utility PROPERTIES

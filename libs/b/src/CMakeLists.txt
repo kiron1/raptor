@@ -19,7 +19,6 @@ target_include_directories(raptor_b
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
         $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/include>
-        ${Boost_INCLUDE_DIRS}
     PRIVATE
         ${CMAKE_CURRENT_BINARY_DIR}
 )
@@ -30,6 +29,7 @@ target_compile_options(raptor_b
 target_link_libraries(raptor_b
     PUBLIC
         $<$<CXX_COMPILER_ID:Clang>:c++>
+        boost::boost
 )
 set_target_properties(raptor_b PROPERTIES
     EXPORT_NAME "b"

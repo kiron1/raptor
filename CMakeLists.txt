@@ -20,14 +20,26 @@ set_property(GLOBAL PROPERTY USE_FOLDERS On)
 
 project(Raptor VERSION 0.3.1 LANGUAGES CXX)
 
+set(Boost_USE_STATIC_LIBS 1)
+
 find_package(AdobeSourceLibraries REQUIRED CONFIG)
-find_package(BoostFilesystem REQUIRED CONFIG)
-find_package(BoostProgramOptions REQUIRED CONFIG)
-find_package(BoostSystem REQUIRED CONFIG)
-find_package(BoostUnitTestFramework)
+find_package(Boost 1.54 REQUIRED COMPONENTS program_options system OPTIONAL_COMPONENTS unit_test_framework)
 find_package(ScanBuild QUIET)
 find_package(BoostBook QUIET)
 find_package(Git QUIET)
+
+add_library(boost::boost INTERFACE IMPORTED)
+set_target_properties(boost::boost PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${Boost_INCLUDE_DIR}"
+    INTERFACE_COMPILE_DEFINITIONS "BOOST_ALL_NO_LIBS=1"
+)
+foreach(_lib IN ITEMS program_options system unit_test_framework)
+    string(TOUPPER "${_lib}" _libup)
+    add_library(boost::${_lib} INTERFACE IMPORTED)
+    set_target_properties(boost::${_lib} PROPERTIES
+        INTERFACE_LINK_LIBRARIES "boost::boost;$<$<CONFIG:Debug>:${Boost_${_libup}_LIBRARY_DEBUG}>;$<$<NOT:$<CONFIG:Debug>>:${Boost_${_libup}_LIBRARY_RELEASE}>"
+    )
+endforeach()
 
 if(GIT_EXECUTABLE AND NOT TARGET Git::git)
     add_executable(Git::git IMPORTED)
